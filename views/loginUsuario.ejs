@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../usuario46/css/signin.css" />
+        <title>Login</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+            integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="shortcut icon" href="../usuario46/imagens/book.png">
+
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <style>
+        .card {
+            background-color: #ffffff80;
+            padding: 30px;
+            border-radius: 4%;
+            box-shadow: 3px 3px 1px 1px #3e4ae960
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <form action="/usuario46/loginUsuario" method="POST">
+            <div class="card">
+                <% if(mensagem){%>
+                    <div class="alert alert-danger" role="alert">
+                        <%= mensagem %>
+                    </div>
+                    <%}%>
+                        <h1>Entrar</h1>
+
+                        <div id="msgError"></div>
+
+                        <div class="label-float">
+                            <input type="email" name="email" placeholder=" " required />
+                            <label id="email" for="email">Email</label>
+                        </div>
+
+                        <div class="label-float">
+                            <input type="password" name="senha" id="senha" paceholder="" required />
+                            <label id="senhaLabel" for="senha">Senha</label>
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </div>
+
+                        <button type="submit" class="button">
+                            Entrar
+                        </button>
+
+                        <div class="justify-center">
+                            <hr />
+                        </div>
+
+                        <p>
+                            Não tem uma conta?
+                            <a href="/usuario46/cadastroUsuario">
+                                Cadastre-se
+                            </a>
+                        </p>
+            </div>
+        </form>
+    </div>
+    <script>
+        let btn = document.querySelector('.fa-eye')
+    
+        btn.addEventListener('click', () => {
+          let inputSenha = document.querySelector('#senha')
+    
+          if (inputSenha.getAttribute('type') == 'password') {
+            inputSenha.setAttribute('type', 'text')
+          } else {
+            inputSenha.setAttribute('type', 'password')
+          }
+        })
+      </script>
+
+</body>
+
+</html>

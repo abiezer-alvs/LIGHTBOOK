@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <title>Autores</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="shortcut icon" href="../usuario46/imagens/book.png">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+      integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+      crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+      integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+      crossorigin="anonymous"></script>
+  </head>
+  <style>
+    .containera {
+      margin-left: auto;
+      margin-right: auto;
+      width: 60%;
+      margin-top: 100px;
+    }
+
+    .container {
+      width: 100%;
+      margin-top: 150px;
+    }
+
+    body {
+      background: linear-gradient(to right, #dcedf8, #b6d5eb);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .card {
+      background-color: #ffffff80;
+      padding: 10px;
+      border-radius: 4%;
+      box-shadow: 3px 3px 1px 1px #3e4ae960;
+      width: 200px;
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <%- include('navbar'); %>
+    <div class="container text-center">
+        <h1>Autores Mais Curtidos
+            <i class="ml-2 fas fa-trophy" style="font-size: 40px; color: rgb(233, 198, 0);"></i>
+        </h1>
+    </div>
+
+    <div class="containera justify-content-center mt-5">
+        <div class="row justify-content-center">
+            <% if (autoresMaisCurtidos[1]) { %>
+                <div class="card mb-4 mt-4 mr-4">
+                    <h2>2º Lugar <i class="ml-2 fas fa-trophy" style="font-size: 30px; color: rgb(190, 190, 190);"></i></h2>
+                    <img src="../usuario46/imagens/<%= autoresMaisCurtidos[1].imagem %>" class="card-img-top"
+                        alt="<%= autoresMaisCurtidos[1].nome %>'s profile image">
+                    <div class="card-body" style="padding: 5px;">
+                        <h5 class="card-title" style="text-align: center;">
+                            <%= autoresMaisCurtidos[1].nome %>
+                            <br>
+                            <br>
+                             Curtidas: <i class="fas fa-heart"></i>  <%= autoresMaisCurtidos[1].curtidas %>
+                        </h5>
+                    </div>
+                </div>                    
+            <% } %>
+
+            <% if (autoresMaisCurtidos[0]) { %>
+                <div class="card mb-5">
+                    <h2>1º Lugar <i class="ml-2 fas fa-trophy" style="font-size: 30px; color: rgb(233, 198, 0);"></i></h2>
+                    <img src="../usuario46/imagens/<%= autoresMaisCurtidos[0].imagem %>" class="card-img-top"
+                        alt="<%= autoresMaisCurtidos[0].nome %>'s profile image">
+                    <div class="card-body" style="padding: 5px;">
+                        <h5 class="card-title" style="text-align: center;">
+                            <%= autoresMaisCurtidos[0].nome %> 
+                            <br>
+                            <br>
+                            Curtidas: <i class="fas fa-heart"></i>  <%= autoresMaisCurtidos[0].curtidas %>
+                        </h5>
+                    </div>
+                </div>                    
+            <% } %>
+
+            <% if (autoresMaisCurtidos[2]) { %>
+                <div class="card mb-4 mt-4 ml-4">
+                    <h2>3º Lugar <i class="ml-2 fas fa-trophy" style="font-size: 30px; color: rgb(146, 98, 59);"></i></h2>
+                    <img src="../usuario46/imagens/<%= autoresMaisCurtidos[2].imagem %>" class="card-img-top"
+                        alt="<%= autoresMaisCurtidos[2].nome %>'s profile image">
+                    <div class="card-body" style="padding: 5px;">
+                        <h5 class="card-title" style="text-align: center;">
+                            <%= autoresMaisCurtidos[2].nome %>
+                            <br> 
+                            <br>
+                            Curtidas: <i class="fas fa-heart"></i> <%= autoresMaisCurtidos[2].curtidas %>
+                        </h5>
+                    </div>
+                </div>                    
+            <% } %>
+                
+            
+        </div>
+    </div>
+</body>
+
+</html>

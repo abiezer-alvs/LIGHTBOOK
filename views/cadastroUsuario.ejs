@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../usuario46/css/signup.css" />
+        <title>Cadastro</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+            integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="shortcut icon" href="../usuario46/imagens/book.png">
+
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+    </head>
+    <style>
+        .card {
+            background-color: #ffffff80;
+            padding: 30px;
+            border-radius: 4%;
+            box-shadow: 3px 3px 1px 1px #3e4ae960
+        }
+
+        button:hover {
+            background-color: #272262;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <form action="/usuario46/cadastroUsuario" method="POST">
+            <div class="card" style="width: 350px;">
+                <% if(mensagem){%>
+                    <div class="alert alert-warning" role="alert">
+                        <%= mensagem %>
+                    </div>
+                    <%}%>
+                        <h1>Cadastrar</h1>
+
+                        <div id="msgError"></div>
+                        <div id="msgSuccess"></div>
+
+                        <div class="label-float">
+                            <input type="text" name="nome" id="nome" placeholder=" " required />
+                            <label id="labelNome" for="nome">Nome</label>
+                        </div>
+
+                        <div class="label-float">
+                            <input type="email" name="email" placeholder=" " required />
+                            <label id="email" for="email">Email</label>
+                        </div>
+
+                        <div class="label-float">
+                            <input type="password" name="senha" id="senha" placeholder=" " required />
+                            <label id="labelSenha" for="senha">Senha</label>
+                            <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i>
+                        </div>
+
+                        <button type="submit" class="button">
+                            Cadastrar
+                        </button>
+
+                        <div class="justify-center">
+                            <hr />
+                        </div>
+
+                        <p>
+                            Já possui uma conta?
+                            <a href="/usuario46/loginUsuario">
+                                Login
+                            </a>
+                        </p>
+            </div>
+        </form>
+    </div>
+
+
+    </script>
+</body>
+
+</html>

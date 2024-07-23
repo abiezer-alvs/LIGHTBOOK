@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <title>Autores</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="shortcut icon" href="../usuario46/imagens/book.png">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+      integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+      crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+      integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+      crossorigin="anonymous"></script>
+  </head>
+  <style>
+    .containera {
+      margin-left: auto;
+      margin-right: auto;
+      width: 60%;
+      margin-top: 100px;
+    }
+
+    .container {
+      width: 100%;
+      margin-top: 150px;
+    }
+
+    body {
+      background: linear-gradient(to right, #dcedf8, #b6d5eb);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .card {
+      background-color: #ffffff80;
+      padding: 10px;
+      border-radius: 4%;
+      box-shadow: 3px 3px 1px 1px #3e4ae960;
+      width: 200px;
+    }
+
+    .button:hover {
+      background-color: #272262;
+      color: #fff;
+    }
+
+    .button {
+      background-color: transparent;
+      border-color: #272262;
+      color: #272262;
+      padding: 7px;
+      font-weight: bold;
+      font-size: 12pt;
+      margin-top: 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      outline: none;
+      transition: all .4s ease-out;
+    }
+
+    .view-works-button {
+      font-size: 15px;
+      color: #272262;
+      text-align: center;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <%- include('navbar'); %>
+    <div class="container text-center">
+      <a class="btn btn-outline-dark" href="../usuario46/cadastroAutor">Cadastrar autor <i class="ml-3 fas fa-plus"
+          class="mt-1"></i></a>
+      <h3 style="margin-top:20px;">Autores cadastrados até o momento:</h3>
+    </div>
+
+    <div class="containera justify-content-center mt-5">
+      <% if (Array.isArray(dadosAutores) && dadosAutores.length===0) { %>
+        <div class="alert alert-warning" role="alert">
+          <strong>Aviso:</strong> Nenhum autor cadastrado!
+        </div>
+        <% } else { %>
+          <form action="/usuario46/pesquisar/<%=dadosAutores[0].id_autor%>" method="POST" class="form-inline mr-auto ml-4 mb-4">
+            <div class="input-group">
+              <input name="palavraChaveAutor" class="form-control mr-sm-2" style="width: 300px;" type="text"
+                placeholder="Pesquisar autores ou gêneros" required>
+              <div class="input-group-append">
+                <button type="reset" class="btn btn-outline-dark"><i class="fas fa-times"></i></button>
+              </div>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-dark ml-2"><i class="fas fa-search"></i></button>
+              </div>
+
+            </div>
+          </form>
+          <div class="row">
+            <% dadosAutores.forEach(function(dados, index) { %>
+              <div class="col-lg-2 col-md-3 col-sm-4 col-6 ml-4">
+                <div class="card mb-4">
+                  <img src="../usuario46/imagens/<%= dados.imagem %>" class="card-img-top"
+                    alt="<%= dados.nm_usuario %>'s profile image">
+                  <div class="card-body" style="padding: 5px;">
+                    <h5 class="card-title" style="margin-left: auto;">
+                      <%= dados.nome %>
+                    </h5>
+                    <p><strong>Gêneros:</strong>
+                      <%= dados.generos %>
+                    </p>
+                    <a href="../usuario46/obras/<%= dados.id_autor %>" class="button view-works-button">
+                      <i class="fas fa-eye"></i> Ver Obras
+                    </a>
+                    <div class="text-center mt-3 mb-2">
+                      <div class="buttons-container">
+                        <a href="../usuario46/curtir/<%= dados.id_autor %>" class="button mr-2">
+                          <i class="fas fa-thumbs-up"></i>
+                          <span> <%= dados.curtidas %></span>
+                        </a>
+                        <a href="../usuario46/dislike/<%= dados.id_autor %>" class="button">
+                          <i class="fas fa-thumbs-down"></i>  
+                          <span> <%= dados.dislikes %></span>
+                        </a>
+                      </div>
+                    </div>
+                    <% if (dadosUsuario) { %>
+                      <% if (dados.id_usuario===req.session.userId) { %>
+                        <div class="btn-group mt-3">
+                          <a href="../usuario46/excluirAutor/<%= dados.id_autor %>" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Excluir
+                          </a>
+                          <a href="../usuario46/editarAutor/<%= dados.id_autor %>" class="btn btn-primary">
+                            <i class="fas fa-pencil-alt"></i> Editar
+                          </a>
+                        </div>
+                        <% } %>
+                          <% } %>
+                  </div>
+                </div>
+              </div>
+              <% if ((index + 1) % 5===0) { %>
+          </div>
+          <div class="row">
+            <% } %>
+              <% }) %>
+          </div>
+          <% } %>
+    </div>
+    </div>
+</body>
+
+</html>

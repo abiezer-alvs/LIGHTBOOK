@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+        <title>Resenhas</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+            integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="shortcut icon" href="../usuario46/imagens/book.png">
+
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+    </head>
+    <style>
+        .containera {
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+            width: 60%;
+            margin-top: 100px;
+        }
+
+        .container {
+            width: 100%;
+            margin-top: 150px;
+        }
+
+        body {
+            background: linear-gradient(to right, #dcedf8, #b6d5eb);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .card {
+            background-color: #ffffff80;
+            padding: 10px;
+            border-radius: 4%;
+            box-shadow: 3px 3px 1px 1px #3e4ae960;
+            width: 800px;
+        }
+
+        .button:hover {
+            background-color: #272262;
+            color: #fff;
+        }
+
+        .button {
+            background-color: transparent;
+            border-color: #272262;
+            color: #272262;
+            padding: 7px;
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+            transition: all .4s ease-out;
+        }
+
+        .view-works-button {
+            font-size: 15px;
+            color: #272262;
+            text-align: center;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('navbar'); %>
+        <div class="container text-center">
+            <a class="btn btn-outline-dark" href="../usuario46/cadastroResenha/<%=id%>">Cadastrar resenha <i
+                    class="ml-3 fas fa-plus" style="font-size: 20px; color: white;"></i></a>
+            <% if (Array.isArray(dadosResenha) && dadosResenha.length>0) { %>
+                <h3 style="margin-top:20px;">Resenhas sobre a obra: "<%= dadosResenha[0].nomeObra %>"</h3>
+                <% } else { %>
+                    <% } %>
+        </div>
+
+        <div class="containera justify-content-center mt-5">
+            <% if (Array.isArray(dadosResenha) && dadosResenha.length === 0) { %>
+                <div class="alert alert-warning" role="alert">
+                  <strong>Aviso:</strong> Nenhuma resenha sobre a obra cadastrada!
+                </div>
+              <% } else { %>
+                <a class="btn btn-outline-dark" style="margin-left: 19%; margin-bottom: 10px;" href="../obras/<%=dadosResenha[0].id_autor%>">
+                  <i class="mr-2 fas fa-arrow-left" style="font-size: 20px; color: white;"></i>Voltar </a>
+                <% dadosResenha.forEach(function(resenha, index) { %>
+                  
+                  <div class="row ml-auto mb-2">
+                    <div class="col-md-14" style="margin-left: auto; margin-right: auto;">
+                      <div class="card mt-2" style="padding: 20px;">
+                        <div class="d-flex align-items-center">
+                          <img src="../usuario46/imagens/<%= resenha.img_perfil %>" style="margin-right: 10px;" class="rounded-circle" height="42" loading="lazy" />
+                          <p class="mt-3"><%= resenha.nm_usuario %></p>
+                        </div>
+                        <h5 class="mt-1"><strong>Resenha:</strong></h5>
+                        <div class="mt-1">
+                          <%= resenha.resenha %>
+                        </div>
+                        <% if (dadosUsuario) { %>
+                          <% if (resenha.id_usuario === req.session.userId) { %>
+                            <div class="btn-group mt-3">
+                              <a href="../usuario46/excluirResenha/<%= resenha.id_resenha %>" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i> Excluir
+                              </a>
+                              <a href="../usuario46/editarResenha/<%= resenha.id_resenha %>" class="btn btn-primary">
+                                <i class="fas fa-pencil-alt"></i> Editar
+                              </a>
+                            </div>
+                          <% } %>
+                        <% } %>
+                      </div>
+                    </div>
+                  </div>
+                <% }); %>
+              <% } %>
+
+
+
+</body>
+
+</html>
